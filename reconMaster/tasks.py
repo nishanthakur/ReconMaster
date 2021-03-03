@@ -190,25 +190,30 @@ def doScan(domain_id, scan_history_id):
     update_last_activity(activity_id, 2)
 
     # Now checking if subdomain takeover is possible or not.
-    # threads = 10
-    # subdomain_takeover_command = settings.TOOL_LOCATION + 'takeover.sh {} {}'.format(current_scan_dir, threads)
-    # os.system(subdomain_takeover_command)
-    # takeover_results_file = results_dir + current_scan_dir + '/takeover_result.json'
+    threads = 10
+    subdomain_takeover_command = settings.TOOL_LOCATION + 'takeover.sh {} {}'.format(current_scan_dir, threads)
+    os.system(subdomain_takeover_command)
+    takeover_results_file = results_dir + current_scan_dir + '/takeover_result.json'
 
-    # try:
-    #     with open(takeover_results_file) as f:
-    #         takeover_data = json.load(f)
+    try:
+        with open(takeover_results_file) as f:
+            takeover_data = json.load(f)
 
-    #     for data in takeover_data:
-    #         if data['vulnerable']:
-    #             get_subdomain = ScannedHost.objects.get(
-    #                 scan_history=task, subdomain=subdomain)
-    #             get_subdomain.takeover = vulnerable_service
-    #             get_subdomain.save()
-    # except Exception as error:
-    #     print('-'*30)
-    #     print(error)
-    #     print('-'*30)
+        for data in takeover_data:
+            if data['vulnerable']:
+                get_subdomain = ScannedHost.objects.get(
+                    scan_history=task, subdomain=data['subdomain'])
+                get_subdomain.takeover = "vulnerable"
+                get_subdomain.save()
+            else:
+                get_subdomain = ScannedHost.objects.get(
+                    scan_history=task, subdomain=data['subdomain'])
+                get_subdomain.takeover = "not vulnerable"
+                get_subdomain.save()
+    except Exception as error:
+        print('-'*30)
+        print(error)
+        print('-'*30)
 
     # Begining of the directory search section
 

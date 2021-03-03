@@ -1,32 +1,28 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.css" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/b-1.6.5/b-html5-1.6.5/r-2.2.7/sc-2.0.3/datatables.min.css"/>
+<script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/b-1.6.5/b-html5-1.6.5/r-2.2.7/sc-2.0.3/datatables.min.js"></script>
+
 <style>
     .wrapper{
         background:none;
     }
     .mytable{
         background:white;
-        padding-top: 5%;
-        width: 99%;
-        /* margin-left: 1%; */
-        box-shadow:
-                    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-                    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-                    0 12.5px 10px rgba(0, 0, 0, 0.06),
-                    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-                    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-                    0 100px 80px rgba(0, 0, 0, 0.12)
-                    ;
+        padding-top: 5%;    
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         border-radius: 10px;
     }
 
-    h4{
-        margin-left: 20px;
-        margin-top: -50px;
-        margin-bottom: 30px;
-        margin-left: 37px;
+    h5{
+        margin-left: 1.7em;
+        margin-top: -2em;
+        margin-bottom: 1.2em;
         font-size: 20px;
     }
 
@@ -35,13 +31,63 @@
         margin-left: 1%;
         margin-right: 1%;
     }
+
+    .recent-activities{
+        margin-top: 0.1em;
+        margin-left: auto;
+    }
+
+
+
 </style>
 {% endblock css%}
 {% block content %}
+
+<div class="row mt-0 ml-1 mr-1">
+    <!-- <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-globe fa-lg" style="color: #eb4d4b"></i>
+            </div>
+            <h2>{{ domain_count }}</h2>
+            <p>Total Targets</p>
+        </div>
+    </div> -->
+    <div class="col-0 col-m-6 col-sm-6">
+        <div class="counter">
+            <h5 class="recent-activities">Recent Activities</h5> 
+        </div>
+    </div>
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-atom fa-lg" style="color: #eb4d4b"></i>
+            </div>
+            <h2>{{ subdomain_count }}</h2>
+            <p>Subdomains Discovered</p>
+            <h6 style="margin-top: -5px;">Total Alive Subdomains: {{ alive_count }}</h6> 
+        </div>
+    </div>
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fab fa-searchengin fa-lg" style="color: #19b3d3;"></i>
+            </div>
+            <h2>{{ endpoint_count }}</h2>
+            <p>Endpoints</p>
+            <h6 style="margin-top: -5px;">Total Alive Endpoints: {{ endpoint_alive_count }}</h6>
+        </div>
+    </div>
+</div>
+
 <div class="table-responsive mytable mb-4">
-    <h4>Scan Result</h4>
+    <h5 class="recent">Scan Result</h5>
+    {% if subdomain_count %}
+    <a href="../export/subdomains/{{scan_history_id}}" class="btn btn-info mb-2 mt-4" style="margin-left: 2em;">Export Subdomains</a>
+    <a href="../export/urls/{{scan_history_id}}" class="btn btn-info mb-2 mt-4">Export URLs</a>
+    {% endif %}
     <div class="tabledata">
-        <table id="subdomain_scan_results" class="table">
+        <table id="subdomain_scan_results" class="multi-table table">
             <!-- #TODO: Add this feature to make tabel look cool. 
                 #[class="multi-table table table-striped table-bordered"] -->
             <thead>
@@ -49,161 +95,285 @@
                     <th>Subdomain</th>
                     <th>Status</th>
                     <th>Ports</th>
+                    <th>Takeover</th>
                     <th>Content Length</th>
                     <th>Page Title</th>
                     <th>Technology</th>
                     <th>Screenshot</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for item in subdomains %}
+        </table>
+    </div>
+</div><br>
+
+
+<div class="table-responsive mytable mb-4">
+    <h5>Endpoints</h5>
+    {% if endpoint_count %}
+    <a href="../export/endpoints/{{scan_history_id}}" class="btn btn-info mb-2 mt-4" style="margin-left: 2em;">Export Endpoints</a>
+    {% endif %}
+    <div class="tabledata">
+        <table id="endpoint_results" class="multi-table table">
+            <!-- #TODO: Add this feature to make tabel look cool. 
+                #[class="multi-table table table-striped table-bordered"] -->
+            <thead>
                 <tr>
-                    <td>{{ item.subdomain }}</td>
-                    <td>{{ item.ip_address }}</td>
-                    <td>{{ item.http_status }}</td>
-                    <td>
-                        {{item.open_ports}}
-                    </td>
-                    <td>{{ item.content_length }}</td>
-                    <td>{{ item.page_title }}</td>
-                    <td>{{item.screenshot_path}}</td>
+                    <th>Endpoint</th>
+                    <th>HTTP Status</th>
+                    <th>Content Length</th>
+                    <th>Page Title</th>
                 </tr>
-                {% endfor %}
-            </tbody>
+            </thead>
         </table>
     </div>
 </div>
+
+
 {% endblock content %}
 {% block script %}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.js"></script>
+
+
 <script>
-$(document).ready( function () {
-$('#subdomain_scan_results').DataTable({
+$(document).ready(function() {
+    var scan_history_table = $('#subdomain_scan_results').DataTable({
+        // 'buttons': {
+        // 'name': 'primary',
+        // 'buttons': [ 'copy', 'csv', 'excel', 'pdf' ]
 
+        // },
+        // 'dom': 'B<"clear">lfrtip',
+        "stripeClasses": [],
+        "lengthMenu": [20, 40, 60, 100],
+        "pageLength": 20,
+        'serverSide': true,
+        "ajax": "/scan/api/scanHistory/?scan_id={{scan_history_id}}&format=datatables",
 
-buttons: {
-    name: 'primary',
-    buttons: [ 'copy', 'csv', 'excel', 'pdf' ]
+        "order": [[4, "desc"]],
 
-    },
-    dom: 'B<"clear">lfrtip',
-    pageLength : 10,
-}
-);
-} );
+        "columns": [
+            { 
+            'data': 'subdomain',
+            'width': "10%",
+            "render": function(data, type, row) {
+                    if (row['http_url']) {
+                        return `<a href="` + row['http_url'] + `" class="text-info td-font" target="_blank">` + data + `</a>`;
+                    } else {
+                        return `<a href="https://` + data + `" class="text-info" target="_blank">` + data + `</a>`;
+                    }
+                }
+            },
+
+            { 
+                'data': 'http_status',
+                'width': "10%",
+                "render": function(data, type, row) {
+                    // display badge based on http status
+                    // green for http status 2XX, orange for 3XX and warning for everything else
+                    if (data >= 200 && data < 300) {
+                        return "<span class='badge badge-pill badge-success'>" + data + "</span>";
+                    } else if (data >= 300 && data < 400) {
+                        return "<span class='badge badge-pill badge-warning'>" + data + "</span>";
+                    } else if (data == 0) {
+                        // datatable throws error when no data is returned
+                        return "";
+                    } else {
+                        return `<span class='badge badge-pill badge-danger'>` + data + `</span>`;
+                    }
+
+                }
+            },
+
+            { 
+                'data': 'open_ports',
+                'width': "10%",
+                "render": function(data, type, row) {
+                    return span_values(data, "info");
+                }
+            },
+
+            {
+                'data': 'takeover',
+                "render": function ( data, type, row ) {
+                    // for takeover
+                    if (data){
+                        return `<div class="t-dot bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title=" Potentially vulnerable via `+data+`"></div>`;
+                    }
+                    else{
+                        return `<div class="t-dot bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Takeover Not Possible"></div>`;
+                    }
+                    
+                }
+            },
+
+            { 
+                'data': 'content_length',
+                'searchable': false,
+                "width": "10%",
+            },
+
+            { 
+                'data': 'page_title',
+                'width': "15%",
+                "render": function ( data, type, row ) {
+                    if (data){
+                        return htmlEncode(data);
+                    }
+                    else{
+                        return "";
+                    }
+                }
+            },
+
+            { 
+                'data': 'technology_stack', 
+                'width': "15%",
+                "render": function(data, type, row) {
+                    if (data) {
+                        return span_values(data, "info");
+                    } else {
+                        return "";
+                    }
+                }
+            },
+
+            { 
+                'data': 'screenshot_path', 'searchable': false,
+                "width": "25%",
+                "render": function(data, type, row) {
+                    if (data) {
+                        //return lightbox
+                        return `<a href="/media/` + data + `" data-lightbox="screenshot"><img src="/media/` + data + `" class="img-fluid rounded mb-4 mt-4" width="210" height="160"></a>`;
+                    } else {
+                        return "N/A";
+                    }
+                }
+            },
+        ],
+    })
+});
+
 </script>
 
 
 <script>
-// $(document).ready(function() {
-//     var scan_history_table = $('#subdomain_scan_results').DataTable({
-//         "buttons": {
-//         "name": 'primary',
-//         "buttons": [ 'copy', 'csv', 'excel', 'pdf' ]
-//         },
-//         "dom": 'B<"clear">lfrtip',
-//         "stripeClasses": [],
-//         "lengthMenu": [20, 40, 60, 100],
-//         "pageLength": 20,
-//         'serverSide': true,
-//         "ajax": '/scan/api/scanHistory/?scan_id={{scan_history_id}}&format=datatables',
-//         'order': [
-//             [4, "desc"]
-//         ],
-//         "columns": [
-//             { 'data': 'subdomain' },
-//             { 'data': 'http_status' },
-//             { 'data': 'open_ports' },
-//             { 'data': 'content_length', 'searchable': false },
-//             { 'data': 'page_title' },
-//             { 'data': 'technology_stack' },
-//             { 'data': 'screenshot_path', 'searchable': false },
-//         ],
-//         "columnDefs": [
+    $(document).ready(function() {
+    $('#endpoint_results').DataTable({
+        "stripeClasses": [],
+        "lengthMenu": [20, 40, 60, 100],
+        "pageLength": 20,
+        'serverSide': true,
+        "ajax": '/scan/api/listEndpoints/?url_of={{scan_history_id}}&format=datatables',
+        "order": [[ 2, "desc" ]],
+        "columns": [
+            {
+                'data': 'http_url',
+                "render": function ( data, type, row ) {
+                    // in the endpoint section, there is no point of displaying fully qualified url
+                    // so display only the endpoint and make a hyperlink
+                    url = getParsedURL(data);
+                    return "<a href='"+data+"' target='_blank' class='text-info'>"+url+"</a>";
+                }
+            },
 
-//             {
-//                 "render": function(data, type, row) {
-//                     if (row['http_url']) {
-//                         return `<a href="` + row['http_url'] + `" class="text-info" target="_blank">` + data + `</a>`;
-//                     } else {
-//                         return `<a href="https://` + data + `" class="text-info" target="_blank">` + data + `</a>`;
-//                     }
-//                 },
-//                 "targets": 0
-//             },
+            {
+                'data': 'http_status',
+                "render": function ( data, type, row ) {
+                    // display badge based on http status
+                    // green for http status 2XX, orange for 3XX and warning for everything else
+                    if (data >= 200 && data < 300) {
+                        return "<span class='badge badge-pills badge-success'>"+data+"</span>";
+                    }
+                    else if (data >= 300 && data < 400) {
+                        return "<span class='badge badge-pills badge-warning'>"+data+"</span>";
+                    }
+                    else if (data == 0){
+                        // datatable throws error when no data is returned
+                        return "";
+                    }
+                    else{
+                        return "<span class='badge badge-pills badge-danger'>"+data+"</span>";
+                    }
 
-//             {
-//                 "render": function(data, type, row) {
-//                     // display badge based on http status
-//                     // green for http status 2XX, orange for 3XX and warning for everything else
-//                     if (data >= 200 && data < 300) {
-//                         return "<span class='badge badge-pills badge-success'>" + data + "</span>";
-//                     } else if (data >= 300 && data < 400) {
-//                         return "<span class='badge badge-pills badge-warning'>" + data + "</span>";
-//                     } else if (data == 0) {
-//                         // datatable throws error when no data is returned
-//                         return "";
-//                     } else {
-//                         return `<span class='badge badge-pills badge-danger'>` + data + `</span>`;
-//                     }
-
-//                 },
-//                 "targets": 1
-//             },
-
-//             {
-//                 "render": function(data, type, row) {
-//                     return span_values(data, "info");
-//                 },
-//                 "targets": 2
-//             },
-
-//             {
-//                 "render": function(data, type, row) {
-//                     if (data) {
-//                         return htmlEncode(data);
-//                     } else {
-//                         return "";
-//                     }
-//                 },
-//                 "targets": 4
-//             },
-
-//             {
-//                 "render": function(data, type, row) {
-//                     if (data) {
-//                         return span_values(data, "info");
-//                     } else {
-//                         return "";
-//                     }
-//                 },
-//                 "targets": 5
-//             },
-
-//             {
-//                 "render": function(data, type, row) {
-//                     if (data) {
-//                         //return lightbox
-//                         return `<a href="/media/` + data + `" data-lightbox="screenshots"><img src="/media/` + data + `" class="img-fluid rounded mb-4 mt-4"></a>`;
-//                     } else {
-//                         return "";
-//                     }
-//                 },
-//                 "targets": 6
-//             },
-//         ],
-//     })
-// });
+                }
+            },
 
 
-// function span_values(data, color) {
-//     var badge = "<span class='badge badge-pill badge-" + color + " m-1'>";
-//     var data_with_span = "";
-//     data.split(/\s*,\s*/).forEach(function(split_vals) {
-//         data_with_span += badge + split_vals + "</span>";
-//     });
-//     return data_with_span;
+            {
+                'data': 'content_length',
+            },
 
-// }
+
+            {
+                'data': 'page_title',
+                // "render": function ( data, type, row ) {
+                //     if (data){
+                //         return htmlEncode(data);
+                //     }
+                //     else{
+                //         return "";
+                //     }
+                // }
+            },
+        ],
+        // "columnDefs": [
+        //     {
+        //         "render": function ( data, type, row ) {
+        //             // in the endpoint section, there is no point of displaying fully qualified url
+        //             // so display only the endpoint and make a hyperlink
+        //             url = getParsedURL(data);
+        //             return "<a href='"+data+"' target='_blank' class='text-info'>"+url+"</a>";
+        //         },
+        //         "targets": 0
+        //     },
+        //     {
+        //         "render": function ( data, type, row ) {
+        //             // display badge based on http status
+        //             // green for http status 2XX, orange for 3XX and warning for everything else
+        //             if (data >= 200 && data < 300) {
+        //                 return "<span class='badge badge-pills badge-success'>"+data+"</span>";
+        //             }
+        //             else if (data >= 300 && data < 400) {
+        //                 return "<span class='badge badge-pills badge-warning'>"+data+"</span>";
+        //             }
+        //             else if (data == 0){
+        //                 // datatable throws error when no data is returned
+        //                 return "";
+        //             }
+        //             else{
+        //                 return "<span class='badge badge-pills badge-danger'>"+data+"</span>";
+        //             }
+
+        //         },
+        //         "targets": 1
+        //     },
+        // ]
+    });
+});
+</script>
+
+
+
+<script>
+    function span_values(data, color) {
+        var badge = "<span class='badge badge-pill badge-" + color + " m-1'>";
+        var data_with_span = "";
+        data.split(/\s*,\s*/).forEach(function(split_vals) {
+            data_with_span += badge + split_vals + "</span>";
+        });
+        return data_with_span;
+
+    }
+
+    function getParsedURL(url) {
+    var parser = new URL(url);
+    return parser.pathname+parser.search;
+    };
+
+
+    function htmlEncode(str){
+        return String(str).replace(/[^\w. ]/gi, function(c){
+        return '&#'+c.charCodeAt(0)+';';
+        });
+    }
 </script>
 {% endblock script %}

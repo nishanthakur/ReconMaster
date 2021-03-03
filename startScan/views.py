@@ -29,36 +29,27 @@ def scan_history(request, host_id=None):
     return render(request, 'startScan/history.html', context)
 
 
-def detail_scan(request, id=None):
-    if id:
-        subdomains = ScannedHost.objects.filter(scan_history__id=id).exclude(http_status__exact=0)
-        context = {
-            'subdomains': subdomains,
-            'title': 'Detail Scan'
-            }
-    else:
-        context = {}
+
+
+def detail_scan(request, id):
+    subdomain_count = ScannedHost.objects.filter(scan_history__id=id).count()
+    alive_count = ScannedHost.objects.filter(scan_history__id=id).exclude(http_status__exact=0).count()
+    scan_activity = ScanActivity.objects.filter(scan_of__id=id).order_by('time')
+    endpoint_count = WayBackEndPoint.objects.filter(url_of__id=id).count()
+    endpoint_alive_count = WayBackEndPoint.objects.filter(url_of__id=id, http_status__exact=200).count()
+    history = get_object_or_404(ScanHistory, id=id)
+    context = {
+        'scan_history_active': 'true',
+        'scan_activity': scan_activity,
+        'alive_count': alive_count,
+        'scan_history_id': id,
+        'subdomain_count': subdomain_count,
+        'endpoint_count': endpoint_count,
+        'endpoint_alive_count': endpoint_alive_count,
+        'history': history 
+    }
+
     return render(request, 'startScan/detail_scan.html', context)
-
-# def detail_scan(request, id=None):
-#     subdomain_count = ScannedHost.objects.filter(scan_history__id=id).count()
-#     alive_count = ScannedHost.objects.filter(scan_history__id=id).exclude(http_status__exact=0).count()
-#     scan_activity = ScanActivity.objects.filter(scan_of__id=id).order_by('time')
-#     endpoint_count = WayBackEndPoint.objects.filter(url_of__id=id).count()
-#     endpoint_alive_count = WayBackEndPoint.objects.filter(url_of__id=id, http_status__exact=200).count()
-#     history = get_object_or_404(ScanHistory, id=id)
-#     context = {
-#         'scan_history_active': 'true',
-#         'scan_activity': scan_activity,
-#         'alive_count': alive_count,
-#         'scan_history_id': id,
-#         'subdomain_count': subdomain_count,
-#         'endpoint_count': endpoint_count,
-#         'endpoint_alive_count': endpoint_alive_count,
-#         'history': history 
-#     }
-
-#     return render(request, 'startScan/detail_scan.html', context)
 
 
 
@@ -82,44 +73,44 @@ def start_scan_ui(request, host_id):
 
 
 
-# def export_subdomains(request, scan_id):
-#     subdomain_list = ScannedHost.objects.filter(scan_history__id=scan_id)
-#     domain_results = ScanHistory.objects.get(id=scan_id)
-#     response_body = ""
-#     for subdomain in subdomain_list:
-#         response_body = response_body + subdomain.subdomain + "\n"
-#     response = HttpResponse(response_body, content_type='text/plain')
-#     response['Content-Disposition'] = 'attachment; filename="subdomains_' + \
-#         domain_results.domain_name.domain_name + '_' + \
-#         str(domain_results.last_scan_date.date()) + '.txt"'
-#     return response
+def export_subdomains(request, scan_id):
+    subdomain_list = ScannedHost.objects.filter(scan_history__id=scan_id)
+    domain_results = ScanHistory.objects.get(id=scan_id)
+    response_body = ""
+    for subdomain in subdomain_list:
+        response_body = response_body + subdomain.subdomain + "\n"
+    response = HttpResponse(response_body, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="subdomains_' + \
+        domain_results.domain_name.domain_name + '_' + \
+        str(domain_results.last_scan_date.date()) + '.txt"'
+    return response
 
 
-# def export_endpoints(request, scan_id):
-#     endpoint_list = WayBackEndPoint.objects.filter(url_of__id=scan_id)
-#     domain_results = ScanHistory.objects.get(id=scan_id)
-#     response_body = ""
-#     for endpoint in endpoint_list:
-#         response_body = response_body + endpoint.http_url + "\n"
-#     response = HttpResponse(response_body, content_type='text/plain')
-#     response['Content-Disposition'] = 'attachment; filename="endpoints_' + \
-#         domain_results.domain_name.domain_name + '_' + \
-#         str(domain_results.last_scan_date.date()) + '.txt"'
-#     return response
+def export_endpoints(request, scan_id):
+    endpoint_list = WayBackEndPoint.objects.filter(url_of__id=scan_id)
+    domain_results = ScanHistory.objects.get(id=scan_id)
+    response_body = ""
+    for endpoint in endpoint_list:
+        response_body = response_body + endpoint.http_url + "\n"
+    response = HttpResponse(response_body, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="endpoints_' + \
+        domain_results.domain_name.domain_name + '_' + \
+        str(domain_results.last_scan_date.date()) + '.txt"'
+    return response
 
 
-# def export_urls(request, scan_id):
-#     urls_list = ScannedHost.objects.filter(scan_history__id=scan_id)
-#     domain_results = ScanHistory.objects.get(id=scan_id)
-#     response_body = ""
-#     for url in urls_list:
-#         if url.http_url:
-#             response_body = response_body + url.http_url + "\n"
-#     response = HttpResponse(response_body, content_type='text/plain')
-#     response['Content-Disposition'] = 'attachment; filename="urls_' + \
-#         domain_results.domain_name.domain_name + '_' + \
-#         str(domain_results.last_scan_date.date()) + '.txt"'
-#     return response
+def export_urls(request, scan_id):
+    urls_list = ScannedHost.objects.filter(scan_history__id=scan_id)
+    domain_results = ScanHistory.objects.get(id=scan_id)
+    response_body = ""
+    for url in urls_list:
+        if url.http_url:
+            response_body = response_body + url.http_url + "\n"
+    response = HttpResponse(response_body, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="urls_' + \
+        domain_results.domain_name.domain_name + '_' + \
+        str(domain_results.last_scan_date.date()) + '.txt"'
+    return response
 
 
 def create_scan_object(host_id):

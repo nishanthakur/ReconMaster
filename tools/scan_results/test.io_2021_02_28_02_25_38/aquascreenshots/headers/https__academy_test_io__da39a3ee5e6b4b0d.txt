@@ -1,0 +1,20 @@
+200 OK
+Server: cloudflare
+Cf-Ray: 6286b4703937a749-KTM
+Date: Sun, 28 Feb 2021 02:27:10 GMT
+Status: 200 OK
+X-Alexandria-Version: f688762656af154757983d5e44fdd51e4275bf63
+Strict-Transport-Security: max-age=0
+Content-Security-Policy: default-src 'self'; connect-src 'self' wss://*.intercom.io https://*.intercom.io https://*.intercom.com https://uploads.intercomcdn.com https://uploads.intercomusercontent.com https://www.google-analytics.com https://stats.g.doubleclick.net; font-src data: https:; frame-src 'self' https://platform.twitter.com https://staticxx.facebook.com https://www.facebook.com https://fast.wistia.net https://www.useloom.com https://www.loom.com https://play.vidyard.com https://player.vimeo.com https://www.youtube.com https://intercom-sheets.com https://www.intercom-reporting.com; img-src data: blob: https: http:; media-src data: blob: https:; object-src 'self' https://static.intercomassets.com; script-src 'self' https://connect.facebook.net https://platform.twitter.com https://static.intercomassets.com https://googleadservices.com https://googletagmanager.com https://google-analytics.com https://widget.intercom.io https://js.intercomcdn.com https://www.googletagmanager.com https://www.google-analytics.com https://intercom.help 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.intercomcdn.com https://static.intercomassets.com https://static.intercomcdn.com https://marketing.intercomassets.com https://marketing.intercomcdn.com https://intercom.help
+Cf-Cache-Status: DYNAMIC
+Cache-Control: max-age=0, private, must-revalidate
+X-Xss-Protection: 1; mode=block
+X-Request-Id: 002b94unpr4k2bul9p40
+Content-Type: text/html; charset=utf-8
+Retry-Count: 0
+X-Runtime: 0.090361
+Cf-Request-Id: 08880f1a270000a7499a299000000001
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+X-Ami-Version: ami-005b76b15cb35e6c5

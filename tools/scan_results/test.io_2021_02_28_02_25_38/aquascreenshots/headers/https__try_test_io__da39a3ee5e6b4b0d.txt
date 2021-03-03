@@ -1,0 +1,18 @@
+200 OK
+Link: <https://try.test.io/>; rel="canonical"
+Cf-Ray: 6286b46d3903a76d-KTM
+Set-Cookie: __cfduid=d33c851d4121676d016f661ac6eb8959a1614479229; expires=Tue, 30-Mar-21 02:27:09 GMT; path=/; domain=.test.io; HttpOnly; SameSite=Lax ubpv=v%2Ced5ca852-d4fe-4240-9d58-dc7879de0728; Max-Age=15897600; Expires=Tue, 31 Aug 2021 02:27:09 GMT; Path=/; SameSite=Lax ubrs=weighted; Path=/; SameSite=Lax ubvs=172.69.77.51616137471440901; Max-Age=15552000; Expires=Fri, 27 Aug 2021 02:27:09 GMT; Path=/; SameSite=Lax ubvt=172.69.77.51616137471440901; Max-Age=259200; Expires=Wed, 03 Mar 2021 02:27:09 GMT; Path=/; Domain=test.io; SameSite=Lax
+X-Unbounce-Visitorid: 172.69.77.51616137471440901
+Cf-Request-Id: 08880f18450000a76d67b37000000001
+Content-Type: text/html; charset=UTF-8
+P3p: CP="This is not a privacy policy."
+Cf-Cache-Status: DYNAMIC
+Content-Location: https://try.test.io/
+Date: Sun, 28 Feb 2021 02:27:09 GMT
+Retry-Count: 0
+X-Unbounce-Pageid: ed5ca852-d4fe-4240-9d58-dc7879de0728
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: cloudflare
+Last-Modified: Mon, 09 Mar 2020 23:40:53 GMT
+X-Unbounce-Variant: v
+X-Proxy-Backend: page-server

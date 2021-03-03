@@ -1,0 +1,18 @@
+503 Service Temporarily Unavailable
+Set-Cookie: __cfduid=d1816016db844a413193127f0cb90b7391614687157; expires=Thu, 01-Apr-21 12:12:37 GMT; path=/; domain=.nirmaldahal.com.np; HttpOnly; SameSite=Lax; Secure
+Expires: Thu, 01 Jan 1970 00:00:01 GMT
+Vary: Accept-Encoding
+Alt-Svc: h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443"; ma=86400
+Retry-Count: 0
+Date: Tue, 02 Mar 2021 12:12:37 GMT
+Content-Type: text/html; charset=UTF-8
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=31OYhcp3zQs68TXA%2BvU3gQ0tCnVsO3Z4E%2FrbJ8MW94jdxEwC2GJiAuWxIUd%2B5fxyFroAqOdcmVnDQ%2F6i0rESPfDr%2BADWfDqh9mtCxZI977O0UPGK1Fzeug%3D%3D"}],"group":"cf-nel","max_age":604800}
+Strict-Transport-Security: max-age=5184000
+X-Content-Type-Options: nosniff
+Cf-Ray: 629a88d08fbea755-KTM
+X-Frame-Options: SAMEORIGIN
+Cf-Request-Id: 089473d6570000a75543964000000001
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+Server: cloudflare

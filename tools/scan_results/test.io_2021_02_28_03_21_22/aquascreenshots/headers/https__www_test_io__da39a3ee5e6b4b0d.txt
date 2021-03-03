@@ -1,0 +1,26 @@
+200 OK
+Expect-Ct: max-age=;
+X-Frame-Options: SAMEORIGIN
+Vary: Accept-Encoding Accept-Encoding Accept-Encoding,Cookie
+Link: <https://test.io/wp-json/>; rel="https://api.w.org/" <https://test.io/wp-json/wp/v2/pages/167>; rel="alternate"; type="application/json" <https://test.io/>; rel=shortlink
+X-Cache: HIT: 2
+X-Content-Type-Options: nosniff
+Cache-Control: max-age=600, must-revalidate
+X-Orig-Cache-Control: max-age=0
+Retry-Count: 0
+X-Xss-Protection: 1; mode=block
+Expires: Sun, 28 Feb 2021 03:22:36 GMT
+X-Cache-Group: normal
+Cf-Cache-Status: DYNAMIC
+Cf-Request-Id: 08884250200000a75b319c1000000001
+Cf-Ray: 628706603a25a75b-KTM
+Feature-Policy: 
+Content-Type: text/html; charset=UTF-8
+Content-Security-Policy: upgrade-insecure-requests
+X-Cacheable: SHORT
+Date: Sun, 28 Feb 2021 03:23:06 GMT
+Strict-Transport-Security: max-age=31536000; includeSubDomains;
+Referrer-Policy: strict-origin
+Set-Cookie: __cfduid=de8ea0c9004f292aa3dce1e5ce5af6c7a1614482585; expires=Tue, 30-Mar-21 03:23:05 GMT; path=/; domain=.test.io; HttpOnly; SameSite=Lax
+Server: cloudflare
+X-Powered-By: WP Engine

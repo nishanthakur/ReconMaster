@@ -1,0 +1,18 @@
+200 OK
+Date: Sun, 28 Feb 2021 03:23:05 GMT
+Content-Type: text/html; charset=utf-8
+Set-Cookie: __cfduid=d81c596a69508611d3025c99018d260df1614482585; expires=Tue, 30-Mar-21 03:23:05 GMT; path=/; domain=.test.io; HttpOnly; SameSite=Lax
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Retry-Count: 0
+Cf-Cache-Status: DYNAMIC
+X-Cache: HIT
+X-Cache-Hits: 1
+X-Timer: S1614482585.382740,VS0,VE0
+Vary: x-fh-requested-host, accept-encoding
+Strict-Transport-Security: max-age=31556926
+X-Served-By: cache-maa10222-MAA
+Server: cloudflare
+Cf-Ray: 6287065de84da75b-KTM
+Cache-Control: max-age=3600
+Last-Modified: Tue, 23 Feb 2021 11:06:18 GMT
+Cf-Request-Id: 0888424eaf0000a75b3314a000000001

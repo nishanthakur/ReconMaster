@@ -64,7 +64,6 @@ body {
     display: flex;
     flex-direction: row;
     background: #ffffff;
-    ;
     color: #212529;
     position: fixed;
     top: 0;
@@ -146,8 +145,7 @@ body {
     height: 105vh;
     position: fixed;
     margin-top: 60px;
-    background: #ffffff;
-    ;
+    background: #ffffff;;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px 1px;
     overflow: hidden;
     z-index: 100;
@@ -365,7 +363,7 @@ table {
 
 table td {
     border-top: 1px solid var#f1f1f1;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
 }
 

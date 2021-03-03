@@ -51,7 +51,7 @@
             </div>
             <h2>{{ scan_count }}</h2>
             <p>Total Scans</p>
-            <h6 style="margin-top: -5px;">Cuerrently Scanning: {{ on_going_scan_count }}</h6>
+            <h6 style="margin-top: -5px;">Currently Scanning: {{ on_going_scan_count }}</h6>
         </div>
     </div>
 </div>
@@ -85,7 +85,6 @@
                                 <td>{{ item.last_scan_date }}</td>
                                 {% if item.scan_status == 0 %}
                                 <td>
-                                    
                                     <button class="btn btn-danger" type="button" disabled>
                                         Failed
                                     </button>
