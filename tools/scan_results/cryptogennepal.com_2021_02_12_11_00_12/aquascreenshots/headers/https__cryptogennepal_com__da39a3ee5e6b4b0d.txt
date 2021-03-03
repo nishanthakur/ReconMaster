@@ -1,0 +1,22 @@
+200 OK
+Content-Type: text/html; charset=UTF-8
+Set-Cookie: __cfduid=dafccf0ef09f9e0dcc92bf5ad0a9ff7b11613127669; expires=Sun, 14-Mar-21 11:01:09 GMT; path=/; domain=.cryptogennepal.com; HttpOnly; SameSite=Lax; Secure
+Content-Language: en
+Referrer-Policy: same-origin
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Date: Fri, 12 Feb 2021 11:01:09 GMT
+X-Xss-Protection: 1
+Vary: Accept-Encoding
+Cf-Cache-Status: DYNAMIC
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+X-Content-Type-Options: nosniff
+Cf-Request-Id: 08377fedbd0000a75bb532e000000001
+Strict-Transport-Security: max-age=15552000; includeSubDomains; preload
+Cf-Ray: 6205cf5c6f63a75b-KTM
+Bug-Hunting: whois@cryptogennepal.com
+Permissions-Policy: accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()
+Content-Security-Policy: 
+Report-To: {"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=XL2E7S%2B%2Ff1lfQtNduZB34VzMTrOh8FOdBey0NQ2POKY2Icf3IL01CmaIxVTkqHkYAGra7VSyosDQwGiCJnI641%2B5QFQ1QtzOp%2FML3QAHe92aKBY%3D"}],"max_age":604800}
+Server: cloudflare
+Retry-Count: 0
+X-Frame-Options: SAMEORIGIN

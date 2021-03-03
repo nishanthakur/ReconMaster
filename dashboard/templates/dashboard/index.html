@@ -1,0 +1,140 @@
+{% extends 'dashboard/base.html' %}
+
+{% block css %}
+<style>
+    tr[data-href]{
+        cursor: pointer;
+    }
+    body{
+        overflow: hidden;
+    }
+
+</style>
+{% endblock css %}
+
+
+{% block content %}
+<div class="row mt-0 ml-1 mr-1">
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-globe fa-lg" style="color: #eb4d4b"></i>
+            </div>
+            <h2>{{ domain_count }}</h2>
+            <p>Total Targets</p>
+        </div>
+    </div>
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fab fa-discourse fa-lg" style="color: #19b3d3;"></i>
+            </div>
+            <h2>{{ subdomain_count }}</h2>
+            <p>Subdomains Discovered</p>
+            <h6 style="margin-top: -5px;">Total Alive Subdomains: {{ alive_count }}</h6>   
+        </div>
+    </div>
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-atom fa-lg" style="color: #eb4d4b"></i>
+            </div>
+            <h2>{{ endpoint_count }}</h2>
+            <p>Endpoints Discovered</p>
+            <h6 style="margin-top: -5px;">Total Alive Endpoints: {{ endpoint_alive_count }}</h6> 
+        </div>
+    </div>
+    <div class="col-0 col-m-3 col-sm-3">
+        <div class="counter">
+            <div style="margin-bottom: 20px;">
+                <i class="fab fa-searchengin fa-lg" style="color: #19b3d3;"></i>
+            </div>
+            <h2>{{ scan_count }}</h2>
+            <p>Total Scans</p>
+            <h6 style="margin-top: -5px;">Cuerrently Scanning: {{ on_going_scan_count }}</h6>
+        </div>
+    </div>
+</div>
+
+
+<div class="row ml-1 mr-1">
+    <div class="col-12 col-m-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>
+                    Recent Scans
+                </h4>
+            </div>
+            <div class="card-content mb-0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scan ID</th>
+                            <th>Domain Name</th>
+                            <th>Description</th>
+                            <th>Last Scan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in recent_scans %}
+                            <tr data-href="{% url 'detail_scan' item.id %}">
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.domain_name }}</td>
+                                <td>Don't Forget</td>
+                                <td>{{ item.last_scan_date }}</td>
+                                {% if item.scan_status == 0 %}
+                                <td>
+                                    
+                                    <button class="btn btn-danger" type="button" disabled>
+                                        Failed
+                                    </button>
+                                </td>
+                                {% elif item.scan_status == 1 %}
+                                <td>
+                                    
+                                    <button class="btn btn-primary" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Scanning
+                                    </button>
+                                </td>
+                                {% elif item.scan_status == 2 %}
+                                <td>
+                                
+                                    <button class="btn btn-success" type="button" disabled style="width: 51%;">
+                                        Completed
+                                    </button>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <span class="dot">
+                                        <i class="bg-success"></i>
+                                        Unknown
+                                    </span>
+                                </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const rows = document.querySelectorAll("tr[data-href]");
+
+        rows.forEach(row => {
+            row.addEventListener("click", () => {
+                window.location.href = row.dataset.href;
+            });
+        });
+    });
+</script>
+{% endblock script %}

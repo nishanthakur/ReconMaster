@@ -1,0 +1,158 @@
+{% extends 'dashboard/base.html' %}
+{% load static%}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.css" />
+<style>
+    .mytable{
+        background:white;
+        padding-top: 5%;
+        width: 95%;
+        margin-left: 2%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+    .tabledata{
+        padding: 2%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    h4{
+        margin-left: 20px;
+        margin-top: -50px;
+        margin-bottom: 30px;
+        margin-left: 37px;
+        font-size: 20px;
+    }
+
+    #listTargets_filter input{
+        border-radius: 3px;
+        background: white;
+        width: 140px;
+        height: 30px;
+        margin-left: 20px;
+    }
+
+</style>
+{# Script to delete Target #}
+<script>
+function deleteTarget(id) {
+    Swal.fire({
+            "title": "Are you sure?",
+            "text": "The process cannot be reverted.",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "No. cancel !",
+            "confirmButtonText": "Yes, delete it !",
+            "reverseButtons": true,
+            "confirmButtonColor": "#eb4d4b",
+            "cancelButtonColor": "#19b3d3",
+        })
+        .then(function(result) {
+            if (result.isConfirmed) {
+                window.location.href = "../delete/" + parseInt(id)
+            }
+        })
+}
+</script>
+<script>
+function startScan(id) {
+    console.log(id)
+    Swal.fire({
+            "title": "Are you sure?",
+            "text": "The process cannot be reverted.",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "No. cancel !",
+            "confirmButtonText": "Yes, Start Scanning!",
+            "reverseButtons": true,
+            "confirmButtonColor": "#eb4d4b",
+            "cancelButtonColor": "#19b3d3",
+        })
+        .then(function(result) {
+            if (result.isConfirmed) {
+                function redirectPost(url, data) {
+                    var form = document.createElement('form');
+                    document.body.appendChild(form);
+                    form.method = 'post';
+                    form.action = url;
+                    for (var name in data) {
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = name;
+                        input.value = data[name];
+                        form.appendChild(input);
+                    }
+                    form.submit();
+                }
+
+                redirectPost('/scan/history/', { host_id: parseInt(id)});
+            }
+        })
+}
+</script>
+{% endblock css %}
+{% block content %}
+<div class="table-responsive mytable mb-4">
+    <h4>List of Targets</h4>
+    <div class="tabledata">
+        <table id="listTargets" class="table style-2  table-hover table-style">
+            <thead>
+                <tr>
+                    <th>Domain Name</th>
+                    <th>Description</th>
+                    <th>Added on</th>
+                    <th>Last Scanned</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in domains %}
+                <tr>
+                    <td>{{ item.domain_name }}</td>
+                    <td>{{ item.domain_description }}</td>
+                    <td>{{ item.insert_date }}</td>
+                    {% if item.last_scan_date %}
+                    <td>{{ item.last_scan_date }}</td>
+                    {% else %}
+                    <td>Never Scanned Before</td>
+                    {% endif %}
+                    <td>
+                        <a href="{% url 'scan_history' item.id %}">
+                            {# href="{% url 'scan_history' item.id %} #}
+                            {# href=" {% url 'delete_target_url' item.id%}" #}
+                            <span title="Start Scan" style="color: #00BFFF;">
+                                <i class="fas fa-play-circle"></i>
+                            </span>
+                        </a>
+
+                        <a href="#" onclick="deleteTarget({{item.id}})">
+                            <span title="Delete Target" style="color: #eb4d4b; margin-left: 17px;">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block script %}
+<!-- <script src="{% static 'plugins/datatable/datatables.js' %}"></script> -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#listTargets').DataTable({
+
+        pageLength: 10,
+        lengthMenu: [
+            [5, 10, 15, 20],
+            [5, 10, 15, 20]
+        ],
+        // dom: 'lfrtip',
+
+    });
+});
+</script>
+{% endblock script %}

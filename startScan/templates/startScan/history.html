@@ -1,0 +1,117 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.css"/>
+
+<style>
+        .all-history{
+        background:white;
+        padding-top: 5%;
+        width: 95%;
+        margin-left: 2%;
+        box-shadow:
+                    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                    0 12.5px 10px rgba(0, 0, 0, 0.06),
+                    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+                    0 100px 80px rgba(0, 0, 0, 0.12)
+                    ;
+        border-radius: 10px;
+    }
+    .detail-history{
+        padding: 2%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    h4{
+        margin-left: 20px;
+        margin-top: -50px;
+        margin-bottom: 30px;
+        margin-left: 37px;
+        font-size: 20px;
+    }
+
+    #scan-history_filter input{
+        border-radius: 3px;
+        background: white;
+        width: 140px;
+        height: 30px;
+        margin-left: 20px;
+    }
+</style>
+
+{% endblock css%}
+
+
+{% block content %}
+
+<div class="table-responsive all-history mb-4">
+    <h4>Scan History</h4>
+    <div class="detail-history">
+        <table id="scan-history" class="table style-2  table-hover table-style">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Target Name</th>
+                    <th>Last Scanned On</th>
+                    <th>Status</th>
+                    <!-- <th>Last Scanned</th> -->
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for history in scan_history %}
+                <tr>
+                    <td><span class="badge badge-dark">{{ history.id }}</span></td>
+                    <td><span class="badge badge-primary">{{ history.domain_name }}</span></td>
+                    <td><span class="badge badge-secondary">{{ history.last_scan_date }}</span></td>
+                    <td>
+                        {% if history.scan_status == -1 %}
+                            <span class="badge badge-warning">Waiting</span>
+                        {% elif history.scan_status == 0 %}
+                            <span class="badge badge-danger">Failed</span>
+                        {% elif history.scan_status == 1 %}
+                            <span class="badge badge-primary">Scanning</span>
+                        {% elif history.scan_status == 2 %}
+                            <span class="badge badge-success">Successful</span>
+                        {% elif history.scan_status == 3 %}
+                            <span class="badge badge-danger">Aborted</span>
+                        {% else %}
+                            <span class="badge badge-danger">Unknown</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'detail_scan' history.id %}" class="btn btn-outline-primary">View</a>
+                        
+                    </td>
+    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block script %}
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.6/sl-1.3.1/datatables.min.js"></script>
+
+<script>
+$(document).ready( function () {
+$('#scan-history').DataTable({
+
+    pageLength : 8,
+    lengthMenu : [[5, 10, 15, 20], [5, 10, 15, 20]],
+    // dom: 'lfrtip',
+
+}
+);
+} );
+</script>
+{% endblock script %}

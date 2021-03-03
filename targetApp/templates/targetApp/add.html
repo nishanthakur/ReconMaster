@@ -1,0 +1,45 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Link for CSS -->
+    <link rel="stylesheet" href="{% static '/assets/css/form.css' %}">
+    <!-- End of Linkg for CSS -->
+
+    <style>
+        .container{
+            margin-left: auto;
+            margin-right: auto;
+            height: 55%;
+            width: 90%;
+            position: center;
+            border-radius: 30px;
+        }
+        h3{
+            margin-bottom: 45px;
+        }
+
+        
+    </style>
+{% endblock css %}
+
+{% block content %}
+<div class="container shadow-lg p-3 mb-5 bg-white rounded">
+    <h3>Add Target</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="DomainName">Domain Name</label>
+        <!-- <input type="text" class="form-control" id="DomainName" name="domain" placeholder="Enter Domain Name"> -->
+        {{ form.domain_name }}
+        </div>
+        <div class="form-group">
+        <label for="Description">Description</label>
+        <!-- <input type="text" class="form-control" id="Description" name="description" placeholder="Enter Description"> -->
+        {{ form.domain_description }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+{% endblock content %}

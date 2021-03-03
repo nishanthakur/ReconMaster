@@ -1,0 +1,71 @@
+body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #f1f1f1 !important;
+		}
+
+		.user_card {
+			width: 350px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: #ffffff;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow:
+				0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+				0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+				0 12.5px 10px rgba(0, 0, 0, 0.06),
+				0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+				0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+				0 100px 80px rgba(0, 0, 0, 0.12);
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title {
+			color: #232323;
+
+		}
+
+		.login_btn {
+			width: 100%;
+			background: #232323 !important;
+			color: white !important;
+		}
+
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+
+		.login_container {
+			padding: 0 2rem;
+		}
+
+		.input-group-text {
+			background: #232323 !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+
+		#messages {
+			background-color: #232323;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}

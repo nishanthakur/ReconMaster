@@ -1,0 +1,24 @@
+200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Referrer-Policy: strict-origin-when-cross-origin
+X-Xss-Protection: 1; mode=block
+X-Download-Options: noopen
+X-Frame-Options: SAMEORIGIN
+Date: Fri, 12 Feb 2021 11:24:00 GMT
+Content-Type: text/html; charset=utf-8
+Retry-Count: 0
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+Server: cloudflare
+Cf-Ray: 6205f0d338d1a755-KTM
+Set-Cookie: cirro_session_key=889ff220d9ce43f150167860098a69f9; domain=.cirro.io; path=/; expires=Sun, 14 Feb 2021 11:23:59 GMT; secure; HttpOnly
+Cf-Cache-Status: DYNAMIC
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+X-Permitted-Cross-Domain-Policies: none
+X-Request-Id: 7103c511-fa6e-40f1-8e97-fea50df4d4b4
+Report-To: {"max_age":604800,"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=xEnYWFS5dgMMhLoajTydLu4x7tEXEGqWkgNKeVmnBFskwr7y8DdKOHUyd9jAk4FsHiUboAMBsblTZIuLcNyeKKzv1BpfW2iKbQ%3D%3D"}],"group":"cf-nel"}
+X-Runtime: 0.015175
+X-Powered-By: Phusion Passenger 6.0.7
+Strict-Transport-Security: max-age=15768000
+Cf-Request-Id: 083794d8050000a75515261000000001
+Status: 200 OK
+X-Content-Type-Options: nosniff
