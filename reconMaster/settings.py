@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'sweetify',
     'rest_framework',
     'rest_framework_datatables',
+    'django.contrib.humanize',
 ]
 
 

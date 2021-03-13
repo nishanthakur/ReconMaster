@@ -1,0 +1,16 @@
+200 OK
+Cf-Request-Id: 08c85a691b0000a76df1b00000000001
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Date: Fri, 12 Mar 2021 14:05:07 GMT
+Retry-Count: 0
+X-Frame-Options: SAMEORIGIN
+Report-To: {"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=H4PSG5tysyMluxy7d7CZc66arS7d2rJaEw1culLPSMzqISB%2BcCtXZ%2BWVfDGMVOC8z%2FcFuDFvLojDxJE9xoc1xljLhpTp%2FqSOBA%2FS%2BKEAjS3%2FoPjDPrf6bR6sDHwLb1U%3D"}],"max_age":604800}
+Cache-Control: no-cache, no-store, must-revalidate, private no-cache, no-store, must-revalidate, private
+X-Content-Type-Options: nosniff
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+Server: cloudflare
+Cf-Ray: 62ed9354ffb6a76d-KTM
+Content-Type: text/html; charset="utf-8"
+Set-Cookie: __cfduid=dd51550c78e8eef608c63bd4b921bb2311615557906; expires=Sun, 11-Apr-21 14:05:06 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax cprelogin=no; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure cpsession=%3aamlsqnWXdYbgnJvW%2c27910096d1443f7497b91b93fd1cb3d7; HttpOnly; path=/; port=443; secure roundcube_sessid=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure roundcube_sessauth=expired; HttpOnly; domain=cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure horde_secret_key=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/horde; port=443; secure PPA_ID=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure imp_key=expired; HttpOnly; domain=cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443 horde_secret_key=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443
+Pragma: no-cache
+Cf-Cache-Status: DYNAMIC

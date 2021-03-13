@@ -43,7 +43,7 @@ def list_target(request):
     domains = Domain.objects.all().order_by('-insert_date')
     context = {
         # 'list_target_li': 'active',
-        # 'target_data_active': 'true',
+        'target_data_active': 'true',
         'domains': domains,
         'title' : 'List Target'
         }

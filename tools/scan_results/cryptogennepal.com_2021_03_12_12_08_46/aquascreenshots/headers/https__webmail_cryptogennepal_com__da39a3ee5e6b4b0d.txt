@@ -1,0 +1,10 @@
+200 OK
+Date: Fri, 12 Mar 2021 12:09:30 GMT
+Pragma: no-cache
+Retry-Count: 0
+Cache-Control: no-cache, no-store, must-revalidate, private no-cache, no-store, must-revalidate, private
+Content-Type: text/html; charset="utf-8"
+X-Content-Type-Options: nosniff
+Set-Cookie: webmailrelogin=no; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure webmailsession=%3aj1gX4eLfV_Nzecva%2c8ab2e92082cae0a3c7f5f97bab0406e6; HttpOnly; path=/; secure roundcube_sessid=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure roundcube_sessauth=expired; HttpOnly; domain=webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure Horde=expired; HttpOnly; domain=.webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure horde_secret_key=expired; HttpOnly; domain=.webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/horde; secure PPA_ID=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure imp_key=expired; HttpOnly; domain=webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; secure Horde=expired; HttpOnly; domain=.webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/ horde_secret_key=expired; HttpOnly; domain=.webmail.cryptogennepal.com; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/ roundcube_cookies=enabled; HttpOnly; expires=Sat, 12-Mar-2022 12:09:30 GMT; path=/; secure
+Server: Apache
+X-Frame-Options: SAMEORIGIN

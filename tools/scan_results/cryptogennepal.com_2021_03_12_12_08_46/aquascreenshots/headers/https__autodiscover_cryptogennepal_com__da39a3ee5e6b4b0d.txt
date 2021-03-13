@@ -1,0 +1,17 @@
+200 OK
+Pragma: no-cache
+Expires: -1
+X-Content-Type-Options: nosniff
+X-Ms-Ests-Server: 2.1.11562.6 - SIN2 ProdSlices
+Cache-Control: no-store, no-cache
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Link: <https://aadcdn.msftauth.net>; rel=preconnect; crossorigin <https://aadcdn.msftauth.net>; rel=dns-prefetch <https://aadcdn.msauth.net>; rel=dns-prefetch
+P3p: CP="DSP CUR OTPi IND OTRi ONL FIN"
+X-Ms-Request-Id: c0246994-0dfa-4625-acc3-91cbd34f3500
+Date: Fri, 12 Mar 2021 12:09:29 GMT
+Retry-Count: 0
+Set-Cookie: buid=0.AAAAMe_N-B6jSkuT5F9XHpElWgIAAAAAAPEPzgAAAAAAAAABAAA.AQABAAEAAAD--DLA3VO7QrddgJg7WevrCw6yhrxKbwyR0JFNVlsnHUjUD0xW1MegR911QnBSoEO0YtpLujSCdzeCZNmGBwd-6YXyakmmPcTWBSgltSvbSONp4gEWVzpWpaIePVNWc6cgAA; expires=Sun, 11-Apr-2021 12:09:29 GMT; path=/; secure; HttpOnly; SameSite=None fpc=AlmYDE1t3JBGsiIdzKHx9E-erOTJAQAAAPhQ3dcOAAAA; expires=Sun, 11-Apr-2021 12:09:29 GMT; path=/; secure; HttpOnly; SameSite=None esctx=AQABAAAAAAD--DLA3VO7QrddgJg7WevrZYynGAnwh8D1O85a_WpdQsiBtWDN8mLDi7EpSGJFGOJ9ah4pSii1vKa9jJK_k9Gyq-XwqW77TjShQiOpEBG5lzHtUKnivc-xaoD5jebB6-Zh4grUodN02c7nUeU0Tj7rPVFbwxbf1Gdc4YEOAm9kXlVGILm6gOw9sdN1U_uDZf0gAA; domain=.login.microsoftonline.com; path=/; secure; HttpOnly; SameSite=None x-ms-gateway-slice=prod; path=/; secure; samesite=none; httponly stsservicecookie=ests; path=/; secure; samesite=none; httponly
+Content-Type: text/html; charset=utf-8
+Vary: Accept-Encoding
+X-Frame-Options: DENY
+X-Dns-Prefetch-Control: on

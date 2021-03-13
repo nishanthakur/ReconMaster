@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load humanize %}
 {% block css %}
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/b-1.6.5/b-html5-1.6.5/r-2.2.7/sc-2.0.3/datatables.min.css"/>
@@ -7,7 +8,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/b-1.6.5/b-html5-1.6.5/r-2.2.7/sc-2.0.3/datatables.min.js"></script>
-
+<link rel="stylesheet" href="{% static '/assets/css/recent_activities.css' %}">
 <style>
     .wrapper{
         background:none;
@@ -19,11 +20,16 @@
         border-radius: 10px;
     }
 
+    .http_urls{
+        text-align: left;
+    }
+
     h5{
         margin-left: 1.7em;
         margin-top: -2em;
         margin-bottom: 1.2em;
         font-size: 20px;
+        font-weight: 600;
     }
 
     .tabledata{
@@ -33,10 +39,27 @@
     }
 
     .recent-activities{
-        margin-top: 0.1em;
+        margin-top: 0.01em;
         margin-left: auto;
+        margin-bottom: 12px;
     }
 
+    .for-overflow{
+        height: 110px;
+        overflow-y: scroll;
+    }
+
+    .page_title{
+        font-size: 14px;
+        font-weight: 600;
+        color: #ca3434; 
+    }
+
+    .content_length{
+        font-size: 14px;
+        font-weight: 600;
+        color: purple
+    }
 
 
 </style>
@@ -44,18 +67,21 @@
 {% block content %}
 
 <div class="row mt-0 ml-1 mr-1">
-    <!-- <div class="col-0 col-m-3 col-sm-3">
-        <div class="counter">
-            <div style="margin-bottom: 20px;">
-                <i class="fas fa-globe fa-lg" style="color: #eb4d4b"></i>
-            </div>
-            <h2>{{ domain_count }}</h2>
-            <p>Total Targets</p>
-        </div>
-    </div> -->
     <div class="col-0 col-m-6 col-sm-6">
         <div class="counter">
             <h5 class="recent-activities">Recent Activities</h5> 
+            <div class="timeline-line for-overflow ">
+                {% for activity in scan_activity %}
+                <div class="item-timeline {% if activity.status == 0 %}timeline-success {% elif activity.status == 1 %}timeline-warning{% elif activity.status == 2 %}timeline-success{% endif %}">
+                    <div class="t-dot" data-original-title="" title="">
+                    </div>
+                    <div class="t-text">
+                        <b>{{activity.title}}</b>
+                        <p class="t-time">{{activity.time|naturaltime}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="col-0 col-m-3 col-sm-3">
@@ -63,9 +89,9 @@
             <div style="margin-bottom: 20px;">
                 <i class="fas fa-atom fa-lg" style="color: #eb4d4b"></i>
             </div>
-            <h2>{{ subdomain_count }}</h2>
+            <h2 class="text-info">{{ subdomain_count }}</h2>
             <p>Subdomains Discovered</p>
-            <h6 style="margin-top: -5px;">Total Alive Subdomains: {{ alive_count }}</h6> 
+            <h6 style="margin-top: -5px;">Total Alive Subdomains: <b class="text-danger">{{ alive_count }}</b></h6> 
         </div>
     </div>
     <div class="col-0 col-m-3 col-sm-3">
@@ -73,18 +99,18 @@
             <div style="margin-bottom: 20px;">
                 <i class="fab fa-searchengin fa-lg" style="color: #19b3d3;"></i>
             </div>
-            <h2>{{ endpoint_count }}</h2>
+            <h2 style="color: #eb4d4b">{{ endpoint_count }}</h2>
             <p>Endpoints</p>
-            <h6 style="margin-top: -5px;">Total Alive Endpoints: {{ endpoint_alive_count }}</h6>
+            <h6 style="margin-top: -5px;">Total Alive Endpoints: <b class="text-info">{{ endpoint_alive_count }}</b></h6>
         </div>
     </div>
 </div>
 
 <div class="table-responsive mytable mb-4">
-    <h5 class="recent">Scan Result</h5>
+    <h5 style="color: #212529;">Scan Result</h5>
     {% if subdomain_count %}
-    <a href="../export/subdomains/{{scan_history_id}}" class="btn btn-info mb-2 mt-4" style="margin-left: 2em;">Export Subdomains</a>
-    <a href="../export/urls/{{scan_history_id}}" class="btn btn-info mb-2 mt-4">Export URLs</a>
+    <a href="../export/subdomains/{{scan_history_id}}" class="btn btn-info mb-2 mt-4 py-1" style="margin-left: 2em; margin-right: 0.5em;">Export Subdomains</a>
+    <a href="../export/urls/{{scan_history_id}}" class="btn btn-info mb-2 mt-4 py-1">Export URLs</a>
     {% endif %}
     <div class="tabledata">
         <table id="subdomain_scan_results" class="multi-table table">
@@ -93,11 +119,11 @@
             <thead>
                 <tr>
                     <th>Subdomain</th>
+                    <th>IP Address</th>
                     <th>Status</th>
                     <th>Ports</th>
-                    <th>Takeover</th>
-                    <th>Content Length</th>
-                    <th>Page Title</th>
+                    <th style="font-size: 15.6px; font-weight: bold; color: #212529;">Content Length</th>
+                    <th style="font-size: 15.6px; font-weight: bold; color: #212529;">Page Title</th>
                     <th>Technology</th>
                     <th>Screenshot</th>
                 </tr>
@@ -110,7 +136,7 @@
 <div class="table-responsive mytable mb-4">
     <h5>Endpoints</h5>
     {% if endpoint_count %}
-    <a href="../export/endpoints/{{scan_history_id}}" class="btn btn-info mb-2 mt-4" style="margin-left: 2em;">Export Endpoints</a>
+    <a href="../export/endpoints/{{scan_history_id}}" class="btn btn-info mb-2 mt-4 py-1" style="margin-left: 2em;">Export Endpoints</a>
     {% endif %}
     <div class="tabledata">
         <table id="endpoint_results" class="multi-table table">
@@ -120,8 +146,8 @@
                 <tr>
                     <th>Endpoint</th>
                     <th>HTTP Status</th>
-                    <th>Content Length</th>
-                    <th>Page Title</th>
+                    <th style="font-size: 15.6px; font-weight: bold; color: #212529;">Content Length</th>
+                    <th style="font-size: 15.6px; font-weight: bold; color: #212529;">Page Title</th>
                 </tr>
             </thead>
         </table>
@@ -153,14 +179,32 @@ $(document).ready(function() {
         "columns": [
             { 
             'data': 'subdomain',
-            'width': "10%",
+            'width': "5%",
             "render": function(data, type, row) {
+
                     if (row['http_url']) {
-                        return `<a href="` + row['http_url'] + `" class="text-info td-font" target="_blank">` + data + `</a>`;
-                    } else {
-                        return `<a href="https://` + data + `" class="text-info" target="_blank">` + data + `</a>`;
-                    }
+						if (row['cname']) {
+							return `<a href="`+row['http_url']+`" class="text-info" target="_blank">`+data+`</a><br><span class="text-dark">CNAME<br><span class="text-warning"> ❯ </span>` + row['cname'].replace(',', '<br><span class="text-warning"> ❯ </span>')+`</span>`;
+						}
+						return `<a href="`+row['http_url']+`" class="text-info" target="_blank">`+data+`</a><br>`;
+					}
+					return `<a href="https://`+data+`" class="text-info" target="_blank">`+data+`</a>`;
                 }
+            },
+
+            {
+                'data': 'ip_address',
+                "render": function ( data, type, row ) {
+					if (data) {
+						if (row['is_ip_cdn']) {
+							return `<span style="padding:3px" class='badge badge-pill badge-warning bs-tooltip' title="CDN IP Address">` + data + `</span>`
+						}
+						return `<span class='badge badge-pill badge-info' style="padding:3px">` + data + `</span>`
+					}
+					else {
+						return '';
+					}
+				}
             },
 
             { 
@@ -191,28 +235,17 @@ $(document).ready(function() {
                 }
             },
 
-            {
-                'data': 'takeover',
-                "render": function ( data, type, row ) {
-                    // for takeover
-                    if (data){
-                        return `<div class="t-dot bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title=" Potentially vulnerable via `+data+`"></div>`;
-                    }
-                    else{
-                        return `<div class="t-dot bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Takeover Not Possible"></div>`;
-                    }
-                    
-                }
-            },
 
             { 
                 'data': 'content_length',
+                'className': 'content_length',
                 'searchable': false,
                 "width": "10%",
             },
 
             { 
                 'data': 'page_title',
+                'className': 'page_title',
                 'width': "15%",
                 "render": function ( data, type, row ) {
                     if (data){
@@ -238,11 +271,11 @@ $(document).ready(function() {
 
             { 
                 'data': 'screenshot_path', 'searchable': false,
-                "width": "25%",
+                "width": "15%",
                 "render": function(data, type, row) {
                     if (data) {
                         //return lightbox
-                        return `<a href="/media/` + data + `" data-lightbox="screenshot"><img src="/media/` + data + `" class="img-fluid rounded mb-4 mt-4" width="210" height="160"></a>`;
+                        return `<a href="/media/` + data + `" data-lightbox="screenshot"><img src="/media/` + data + `" class="img-fluid rounded mb-4 mt-4"></a>`;
                     } else {
                         return "N/A";
                     }
@@ -267,6 +300,7 @@ $(document).ready(function() {
         "columns": [
             {
                 'data': 'http_url',
+                'className': 'http_urls',
                 "render": function ( data, type, row ) {
                     // in the endpoint section, there is no point of displaying fully qualified url
                     // so display only the endpoint and make a hyperlink
@@ -281,17 +315,17 @@ $(document).ready(function() {
                     // display badge based on http status
                     // green for http status 2XX, orange for 3XX and warning for everything else
                     if (data >= 200 && data < 300) {
-                        return "<span class='badge badge-pills badge-success'>"+data+"</span>";
+                        return "<span class='badge badge-pill badge-success'>"+data+"</span>";
                     }
                     else if (data >= 300 && data < 400) {
-                        return "<span class='badge badge-pills badge-warning'>"+data+"</span>";
+                        return "<span class='badge badge-pill badge-warning'>"+data+"</span>";
                     }
                     else if (data == 0){
                         // datatable throws error when no data is returned
                         return "";
                     }
                     else{
-                        return "<span class='badge badge-pills badge-danger'>"+data+"</span>";
+                        return "<span class='badge badge-pill badge-danger'>"+data+"</span>";
                     }
 
                 }
@@ -300,53 +334,16 @@ $(document).ready(function() {
 
             {
                 'data': 'content_length',
+                'className': 'content_length',
             },
 
 
             {
                 'data': 'page_title',
-                // "render": function ( data, type, row ) {
-                //     if (data){
-                //         return htmlEncode(data);
-                //     }
-                //     else{
-                //         return "";
-                //     }
-                // }
+                'className': 'page_title'
             },
         ],
-        // "columnDefs": [
-        //     {
-        //         "render": function ( data, type, row ) {
-        //             // in the endpoint section, there is no point of displaying fully qualified url
-        //             // so display only the endpoint and make a hyperlink
-        //             url = getParsedURL(data);
-        //             return "<a href='"+data+"' target='_blank' class='text-info'>"+url+"</a>";
-        //         },
-        //         "targets": 0
-        //     },
-        //     {
-        //         "render": function ( data, type, row ) {
-        //             // display badge based on http status
-        //             // green for http status 2XX, orange for 3XX and warning for everything else
-        //             if (data >= 200 && data < 300) {
-        //                 return "<span class='badge badge-pills badge-success'>"+data+"</span>";
-        //             }
-        //             else if (data >= 300 && data < 400) {
-        //                 return "<span class='badge badge-pills badge-warning'>"+data+"</span>";
-        //             }
-        //             else if (data == 0){
-        //                 // datatable throws error when no data is returned
-        //                 return "";
-        //             }
-        //             else{
-        //                 return "<span class='badge badge-pills badge-danger'>"+data+"</span>";
-        //             }
-
-        //         },
-        //         "targets": 1
-        //     },
-        // ]
+        
     });
 });
 </script>

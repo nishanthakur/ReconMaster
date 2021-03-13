@@ -41,7 +41,39 @@
         height: 30px;
         margin-left: 20px;
     }
+
+    .status{
+        padding: 5px;
+        font-size: 14px;
+        font-weight: bolder;
+    }
+
+
 </style>
+
+<!-- Script for deleting history -->
+
+<script>
+    function deleteScan(id) {
+        Swal.fire({
+                "title": "Are you sure?",
+                "text": "The process cannot be reverted.",
+                "icon": "warning",
+                "showCancelButton": true,
+                "cancelButtonText": "No. cancel !",
+                "confirmButtonText": "Yes, delete it !",
+                "reverseButtons": true,
+                "confirmButtonColor": "#eb4d4b",
+                "cancelButtonColor": "#19b3d3",
+            })
+            .then(function(result) {
+                if (result.isConfirmed) {
+                    window.location.href = "../deleteScan/" + parseInt(id)
+                }
+            })
+    }
+
+</script>
 
 {% endblock css%}
 
@@ -58,7 +90,6 @@
                     <th>Target Name</th>
                     <th>Last Scanned On</th>
                     <th>Status</th>
-                    <!-- <th>Last Scanned</th> -->
                     <th>Action</th>
                     
                 </tr>
@@ -71,22 +102,27 @@
                     <td><span>{{ history.last_scan_date }}</span></td>
                     <td>
                         {% if history.scan_status == -1 %}
-                            <span class="badge badge-warning">Waiting</span>
+                            <span class="badge badge-warning status">Waiting</span>
                         {% elif history.scan_status == 0 %}
-                            <span class="badge badge-danger">Failed</span>
+                            <span class="badge badge-danger status">Failed</span>
                         {% elif history.scan_status == 1 %}
-                            <span class="badge badge-primary">Scanning</span>
+                            <span class="badge badge-primary status">Scanning</span>
                         {% elif history.scan_status == 2 %}
-                            <span class="badge badge-success">Successful</span>
+                            <span class="badge badge-success status ">Completed</span>
                         {% elif history.scan_status == 3 %}
-                            <span class="badge badge-danger">Aborted</span>
+                            <span class="badge badge-danger status">Aborted</span>
                         {% else %}
-                            <span class="badge badge-danger">Unknown</span>
+                            <span class="badge badge-danger status">Unknown</span>
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'detail_scan' history.id %}" class="btn btn-outline-primary">View</a>
-                        
+                        <a href="{% url 'detail_scan' history.id %}" class="btn btn-outline-primary py-1 ml-10">View</a>
+
+                        <a onclick="deleteScan({{ history.id }})">
+                            <span title="Delete {{history.domain_name}}">
+                            <i class="fas fa-times-circle fa-lg" style="margin-left: 8px; color: #eb4d4b; cursor: pointer;"></i>
+                        </span>
+                        </a>
                     </td>
     
                 </tr>
@@ -108,9 +144,6 @@ $(document).ready( function () {
 $('#scan-history').DataTable({
 
     order: [[0, "desc"]],
-    pageLength : 6,
-    // lengthMenu : [[5, 10, 15, 20], [5, 10, 15, 20]],
-    // dom: 'lfrtip',
 
 }
 );

@@ -1,0 +1,16 @@
+200 OK
+Date: Sat, 13 Mar 2021 06:43:55 GMT
+Set-Cookie: __cfduid=d48dd473bac32e40f6a5cd6e9e6bdf59a1615617834; expires=Mon, 12-Apr-21 06:43:54 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax cprelogin=no; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure cpsession=%3aYwnL64E3xOXkFGyA%2c2ad2b4e4bb5ee9c8d9a2402b2cc95ea0; HttpOnly; path=/; port=443; secure roundcube_sessid=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure roundcube_sessauth=expired; HttpOnly; domain=cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure horde_secret_key=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/horde; port=443; secure PPA_ID=expired; HttpOnly; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure imp_key=expired; HttpOnly; domain=cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443; secure Horde=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443 horde_secret_key=expired; HttpOnly; domain=.cpanel.islingtoncollege.edu.np; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; port=443
+Cache-Control: no-cache, no-store, must-revalidate, private no-cache, no-store, must-revalidate, private
+Cf-Request-Id: 08cbecd6af0000a76131003000000001
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=vv%2BQcOyzjbVSd5wjwj20hMSCWjGOjjy%2BKYQaPvFUw26pHE%2B6BY87UIynJbvH82EGubTEdKb5Bfrn%2B0VsuXb1OV%2FkJPwn1s%2FQRerc661ZExyCdafSozSZy8JVnYLGMFA%3D"}],"group":"cf-nel","max_age":604800}
+Server: cloudflare
+Cf-Ray: 62f34a6aba34a761-KTM
+Content-Type: text/html; charset="utf-8"
+Retry-Count: 0
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+Pragma: no-cache
+Cf-Cache-Status: DYNAMIC

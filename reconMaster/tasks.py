@@ -17,14 +17,13 @@ from datetime import datetime
 def doScan(domain_id, scan_history_id):
     current_scan_time = timezone.now()
     domain = Domain.objects.get(pk=domain_id)
-    task = ScanHistory()
+    task = ScanHistory.objects.get(id=scan_history_id)
 
     # Saving the last scan date.
     domain.last_scan_date = current_scan_time
     domain.save()
 
     # Saving the task status.
-    task.domain_name = domain
     task.scan_status = 1
     task.last_scan_date = current_scan_time
     task.save()
@@ -111,7 +110,7 @@ def doScan(domain_id, scan_history_id):
     update_last_activity(activity_id, 2)
 
     # Begining of HTTP Crawler and screenshot section.
-    activity_id = create_scan_activity(task, "HTTP Crawler", 1)
+    activity_id = create_scan_activity(task, "Running HTTP Crawler", 1)
     httpx_results_file = results_dir + current_scan_dir + '/httpx.json'
     httpx_command = f'cat {subdomain_scan_results_file} | httpx -json -cdn -o {httpx_results_file}'
     os.system(httpx_command)
@@ -149,7 +148,7 @@ def doScan(domain_id, scan_history_id):
     update_last_activity(activity_id, 2)
 
     # Running aquatone for visual identification.
-    activity_id = create_scan_activity(task, "Running Aquatone", 1)
+    activity_id = create_scan_activity(task, "Taking Screenshots", 1)
     with_protocol_path = results_dir + current_scan_dir + '/alive.txt'
     output_aquatone_path = results_dir + current_scan_dir + '/aquascreenshots'
     scan_port = 'xlarge'
@@ -200,14 +199,16 @@ def doScan(domain_id, scan_history_id):
             takeover_data = json.load(f)
 
         for data in takeover_data:
-            if data['vulnerable']:
+            if data['vulnerable']:              
                 get_subdomain = ScannedHost.objects.get(
                     scan_history=task, subdomain=data['subdomain'])
+                print(get_subdomain)
                 get_subdomain.takeover = "vulnerable"
                 get_subdomain.save()
             else:
                 get_subdomain = ScannedHost.objects.get(
                     scan_history=task, subdomain=data['subdomain'])
+                print(get_subdomain)
                 get_subdomain.takeover = "not vulnerable"
                 get_subdomain.save()
     except Exception as error:

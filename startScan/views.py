@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -15,18 +15,21 @@ import requests
 # Create your views here.
 
 def scan_history(request, host_id=None):
-    if host_id:
+    if host_id != None:
         domain = get_object_or_404(Domain, id=host_id)
         scan_history_id = create_scan_object(host_id)
         celery_task = doScan.apply_async(args=(host_id, scan_history_id))
         ScanHistory.objects.filter(id=scan_history_id).update(celery_id=celery_task.id)
-    host = ScanHistory.objects.all().order_by('-last_scan_date')
-    context = {
-        'scan_history_active': 'true', 
-        'scan_history': host,
-        'title':'History'
-        }
-    return render(request, 'startScan/history.html', context)
+        messages.add_message(request, messages.INFO, 'Scanning started for ' + domain.domain_name)
+        return HttpResponseRedirect(reverse('scan_hist'))
+    else:
+        host = ScanHistory.objects.all().order_by('-last_scan_date')
+        context = {
+            'scan_history_active': 'true', 
+            'scan_history': host,
+            'title':'History'
+            }
+        return render(request, 'startScan/history.html', context)
 
 
 
@@ -34,11 +37,12 @@ def scan_history(request, host_id=None):
 def detail_scan(request, id):
     subdomain_count = ScannedHost.objects.filter(scan_history__id=id).count()
     alive_count = ScannedHost.objects.filter(scan_history__id=id).exclude(http_status__exact=0).count()
-    scan_activity = ScanActivity.objects.filter(scan_of__id=id).order_by('time')
+    scan_activity = ScanActivity.objects.filter(scan_of__id=id).order_by('-time')
     endpoint_count = WayBackEndPoint.objects.filter(url_of__id=id).count()
     endpoint_alive_count = WayBackEndPoint.objects.filter(url_of__id=id, http_status__exact=200).count()
     history = get_object_or_404(ScanHistory, id=id)
     context = {
+        'title': 'Scan Result',
         'scan_history_active': 'true',
         'scan_activity': scan_activity,
         'alive_count': alive_count,
@@ -52,22 +56,6 @@ def detail_scan(request, id):
     return render(request, 'startScan/detail_scan.html', context)
 
 
-
-def start_scan_ui(request, host_id):
-    domain = get_object_or_404(Domain, id=host_id)
-    scan_history_id = create_scan_object(host_id)
-    # start the celery task
-    celery_task = doScan.apply_async(
-        args=(host_id, scan_history_id))
-    ScanHistory.objects.filter(
-        id=scan_history_id).update(
-        celery_id=celery_task.id)
-    messages.add_message(
-        request,
-        messages.INFO,
-        'Scan Started for ' +
-        domain.domain_name)
-    return HttpResponseRedirect(reverse('scan_history'))
 
 
 
@@ -130,3 +118,21 @@ def create_scan_object(host_id):
     domain.last_scan_date = current_scan_time
     domain.save()
     return task.id
+
+    
+def delete_scan(request, id):
+    obj = get_object_or_404(ScanHistory, id=id)
+    domain = obj.domain_name
+    delete_dir = obj.domain_name.domain_name + '_' + \
+        str(datetime.strftime(obj.last_scan_date, '%Y_%m_%d_%H_%M_%S'))
+    delete_path = settings.TOOL_LOCATION + 'scan_results/' + delete_dir
+    os.system('rm -rf ' + delete_path)
+    obj.delete()
+    messageData = {'status': 'true'}
+    messages.add_message(
+        request,
+        messages.INFO,
+        f'{domain} successfully removed from scan history list.')
+    return redirect('scan_hist')
+
+

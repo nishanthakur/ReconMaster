@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,7 @@
 	<link rel="stylesheet" href="{% static '/plugins/snackbar/snackbar.min.css' %}">
 	<script src="{% static '/plugins/snackbar/snackbar.min.js' %}"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 	
 	<!-- End Import Library -->
 
@@ -109,22 +111,7 @@
 						<span>History</span>
 					</a>
 				</li>
-				<!-- <li  class="sidebar-nav-item">
-					<a href="#" class="sidebar-nav-link">
-						<div>
-							<i class="fas fa-check-circle"></i>
-						</div>
-						<span>History</span>
-					</a>
-				</li> -->
-				<li  class="sidebar-nav-item">
-					<a href="#" class="sidebar-nav-link">
-						<div>
-							<i class="fas fa-info-circle"></i>
-						</div>
-						<span>About</span>
-					</a>
-				</li>
+				
 				<li  class="sidebar-nav-item">
 					<a href="{% url 'logout' %}" class="sidebar-nav-link">
 						<div>

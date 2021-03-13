@@ -1,4 +1,5 @@
 {% extends 'dashboard/base.html' %}
+{% load humanize %}
 
 {% block css %}
 <style>
@@ -82,7 +83,7 @@
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.domain_name }}</td>
                                 <td>Don't Forget</td>
-                                <td>{{ item.last_scan_date }}</td>
+                                <td>{{ item.last_scan_date|naturaltime }}</td>
                                 {% if item.scan_status == 0 %}
                                 <td>
                                     <button class="btn btn-danger" type="button" disabled>
@@ -93,14 +94,14 @@
                                 <td>
                                     
                                     <button class="btn btn-primary" type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
                                         Scanning
                                     </button>
                                 </td>
                                 {% elif item.scan_status == 2 %}
                                 <td>
                                 
-                                    <button class="btn btn-success" type="button" disabled style="width: 51%;">
+                                    <button class="btn btn-success " type="button" disabled style="width: 51%;">
                                         Completed
                                     </button>
                                 </td>

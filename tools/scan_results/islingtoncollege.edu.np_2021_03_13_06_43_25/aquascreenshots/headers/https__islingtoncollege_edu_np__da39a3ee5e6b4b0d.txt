@@ -1,0 +1,12 @@
+200 OK
+Cf-Cache-Status: DYNAMIC
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Report-To: {"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=6sk0f6lKp6jayDYpGXdUstEa32Z3nsYQP4zmDGKgXw4RdfowoO3w8Ft3NcX2RVxnBLHl%2B%2BPmLoJbw15ItvlJ8EI6aql7k7kGIC6NEl65ApK7"}],"max_age":604800}
+Content-Type: text/html; charset=UTF-8
+Retry-Count: 0
+Link: <https://islington.edu.np/wp-json/>; rel="https://api.w.org/", <https://wp.me/P8IYbR-A>; rel=shortlink
+Cf-Request-Id: 08cbecde200000a75ba02b2000000001
+Nel: {"report_to":"cf-nel","max_age":604800}
+Server: cloudflare
+Cf-Ray: 62f34a769ff3a75b-KTM
+Date: Sat, 13 Mar 2021 06:43:58 GMT

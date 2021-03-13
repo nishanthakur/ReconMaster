@@ -27,7 +27,6 @@ class ScannedHost(models.Model):
     screenshot_path = models.CharField(max_length=1000, null=True)
     http_header_path = models.CharField(max_length=1000, null=True)
     technology_stack = models.CharField(max_length=1500, null=True)
-    directory_json = JSONField(null=True)
     takeover = models.CharField(max_length=100, null=True)
 
     def __str__(self):

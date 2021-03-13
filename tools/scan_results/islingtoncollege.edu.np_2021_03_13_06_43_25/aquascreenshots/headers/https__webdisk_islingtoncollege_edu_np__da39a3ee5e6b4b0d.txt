@@ -1,0 +1,18 @@
+401 Unauthorized
+Content-Type: text/html; charset="utf-8"
+Host: webdisk.islingtoncollege.edu.np:443
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Cf-Request-Id: 08cbecd6be0000a767fc078000000001
+Retry-Count: 0
+Www-Authenticate: Basic realm="Restricted Area"
+Cf-Cache-Status: DYNAMIC
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=slU4VM6juZpb4vNHwuKZNTbLf%2Bs5a5O%2B1eiFxXkeM0JseI%2F%2FRBeBuuZbdAP%2BSjMi4UMK2q92M18llaAb%2BBGDz0%2BpgRih5N%2FE4SapTVGkbDpJEyler%2FgbLfKb8op%2BFLxK"}],"group":"cf-nel","max_age":604800}
+Nel: {"report_to":"cf-nel","max_age":604800}
+Server: cloudflare
+Cf-Ray: 62f34a6ac946a767-KTM
+Date: Sat, 13 Mar 2021 06:43:55 GMT
+Set-Cookie: __cfduid=dc945860a4ded0a8fab44f5a1c234a5c61615617834; expires=Mon, 12-Apr-21 06:43:54 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax
+Persistent-Auth: false
+Cache-Control: no-cache, no-store, must-revalidate, private
+Vary: Accept-Encoding

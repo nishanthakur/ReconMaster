@@ -1,0 +1,18 @@
+200 OK
+Retry-Count: 0
+Set-Cookie: __cfduid=dca37603868bb38782ef62d44cfaf324f1615551958; expires=Sun, 11-Apr-21 12:25:58 GMT; path=/; domain=.test.io; HttpOnly; SameSite=Lax ubpv=a%2C1a45618c-3dc3-4123-9798-60650e5790d4; Max-Age=15897600; Expires=Sun, 12 Sep 2021 12:25:58 GMT; Path=/; SameSite=Lax ubrs=weighted; Path=/; SameSite=Lax ubvs=172.69.77.21615777203092621; Max-Age=15552000; Expires=Wed, 08 Sep 2021 12:25:58 GMT; Path=/; SameSite=Lax ubvt=172.69.77.21615777203092621; Max-Age=259200; Expires=Mon, 15 Mar 2021 12:25:58 GMT; Path=/; Domain=test.io; SameSite=Lax
+P3p: CP="This is not a privacy policy."
+Content-Location: https://go.test.io/
+Cf-Request-Id: 08c7ffa6c70000a755f6054000000001
+Cf-Ray: 62ed021dfc38a755-KTM
+X-Unbounce-Visitorid: 172.69.77.21615777203092621
+Link: <https://go.test.io/>; rel="canonical"
+Cf-Cache-Status: DYNAMIC
+X-Unbounce-Variant: a
+X-Proxy-Backend: page-server
+Server: cloudflare
+Date: Fri, 12 Mar 2021 12:25:59 GMT
+Content-Type: text/html; charset=UTF-8
+X-Unbounce-Pageid: 1a45618c-3dc3-4123-9798-60650e5790d4
+Last-Modified: Wed, 27 Dec 2017 10:54:00 GMT
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"

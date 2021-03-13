@@ -1,0 +1,20 @@
+200 OK
+Status: 200 OK
+Strict-Transport-Security: max-age=0
+X-Request-Id: 001ac6ufqgeidq8ph38g
+X-Frame-Options: DENY
+Cf-Cache-Status: DYNAMIC
+X-Alexandria-Version: 86e6a4f200de57ccc48d82424771e24989a81765
+X-Xss-Protection: 1; mode=block
+X-Runtime: 0.099714
+X-Content-Type-Options: nosniff
+Server: cloudflare
+Retry-Count: 0
+Cf-Request-Id: 08c80001030000a7611d1d1000000001
+Cf-Ray: 62ed02ae6a49a761-KTM
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Date: Fri, 12 Mar 2021 12:26:22 GMT
+Content-Type: text/html; charset=utf-8
+Cache-Control: max-age=0, private, must-revalidate
+Content-Security-Policy: default-src 'self'; child-src 'self' https://platform.twitter.com https://staticxx.facebook.com https://www.facebook.com https://fast.wistia.net https://www.useloom.com https://www.loom.com https://play.vidyard.com https://player.vimeo.com https://www.youtube.com https://intercom-sheets.com https://www.intercom-reporting.com; connect-src 'self' wss://*.intercom.io https://*.intercom.io https://*.intercom.com https://uploads.intercomcdn.com https://uploads.intercomusercontent.com https://www.google-analytics.com https://stats.g.doubleclick.net; font-src data: https:; frame-ancestors 'self' https://intercom.skilljar.com; img-src data: blob: https: http:; media-src data: blob: https:; object-src 'self' https://static.intercomassets.com; script-src 'self' https://connect.facebook.net https://platform.twitter.com https://static.intercomassets.com https://googleadservices.com https://googletagmanager.com https://google-analytics.com https://widget.intercom.io https://js.intercomcdn.com https://www.googletagmanager.com https://www.google-analytics.com https://intercom.help 'nonce-epTgtSFZMj5BfjEj3iOadD5APHGKYezi77F0bBDrTaA='; style-src 'self' 'unsafe-inline' https://fonts.intercomcdn.com https://static.intercomassets.com https://static.intercomcdn.com https://marketing.intercomassets.com https://marketing.intercomcdn.com https://intercom.help
+X-Ami-Version: ami-0f7d4905ec5f4a6f4

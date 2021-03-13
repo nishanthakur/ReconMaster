@@ -1,0 +1,12 @@
+200 OK
+Cf-Cache-Status: DYNAMIC
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=GGfNTto6vU2oG%2FP1Lizv5kLzIRMN2z6hKZmRK%2FIn6xKwyhM2jKG0jqyLKMrZcfanDFOcHOagg4THALdZ3dGFqqwa7ByC2ePWhLaaDx4pvLstaN1g6SVQTQya265wDH%2BuWfg%3D"}],"group":"cf-nel","max_age":604800}
+Date: Fri, 12 Mar 2021 14:05:06 GMT
+Set-Cookie: __cfduid=d5c18434f9520faf0d9a13ba4fd780f251615557906; expires=Sun, 11-Apr-21 14:05:06 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax
+Last-Modified: Thu, 04 Mar 2021 05:40:26 GMT
+Server: cloudflare
+Cf-Ray: 62ed9353ebe8a761-KTM
+Content-Type: text/html
+Retry-Count: 0
+Cf-Request-Id: 08c85a68750000a7611f984000000001
+Nel: {"max_age":604800,"report_to":"cf-nel"}

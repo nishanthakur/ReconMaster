@@ -6,6 +6,19 @@ body,
 			background: #f1f1f1 !important;
 		}
 
+		.left_area h2 {
+			color: #eb4d4b;
+			margin-left: 20px;
+			text-transform: uppercase;
+			font-size: 22px;
+			font-weight: 900;
+			margin-top: 9px;
+		}
+		
+		.left_area span {
+			color: #19b3d3;
+		}
+
 		.user_card {
 			width: 350px;
 			margin-top: auto;

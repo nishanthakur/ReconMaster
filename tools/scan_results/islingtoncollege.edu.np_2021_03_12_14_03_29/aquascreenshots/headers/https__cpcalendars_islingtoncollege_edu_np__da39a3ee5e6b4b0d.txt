@@ -1,0 +1,18 @@
+401 Unauthorized
+Set-Cookie: __cfduid=d6a2e4f179bb8b27414fe91d93eb0f16d1615557906; expires=Sun, 11-Apr-21 14:05:06 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax
+Host: cpcalendars.islingtoncollege.edu.np:443
+Vary: Accept-Encoding
+Www-Authenticate: Basic realm="Horde DAV Server"
+Cf-Cache-Status: DYNAMIC
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Persistent-Auth: false
+Cache-Control: no-cache, no-store, must-revalidate, private
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Nel: {"report_to":"cf-nel","max_age":604800}
+Cf-Ray: 62ed9354ff57a75b-KTM
+Content-Type: text/html; charset="utf-8"
+Report-To: {"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=1l8qjDyh8TUgEKCgadBJM7ir57eKXJY1SAwnxUMyR7Q0P4mCXY4UN8vl24ejd1GvOBWhEUh5tryXI2h2nCMVoE%2Fl5ztr01QtF80YgfctXp9dHQR3dwq6BJY7lex%2Bmsdsk6J6fw%3D%3D"}],"max_age":604800}
+Server: cloudflare
+Retry-Count: 0
+Date: Fri, 12 Mar 2021 14:05:07 GMT
+Cf-Request-Id: 08c85a691a0000a75ba70ea000000001

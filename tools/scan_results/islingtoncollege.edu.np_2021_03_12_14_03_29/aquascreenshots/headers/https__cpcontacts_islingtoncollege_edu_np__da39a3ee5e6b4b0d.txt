@@ -1,0 +1,18 @@
+401 Unauthorized
+Www-Authenticate: Basic realm="Horde DAV Server"
+Nel: {"max_age":604800,"report_to":"cf-nel"}
+Server: cloudflare
+Retry-Count: 0
+Date: Fri, 12 Mar 2021 14:05:07 GMT
+Persistent-Auth: false
+Vary: Accept-Encoding
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=T9PElN9iRkiYNfxK%2Bo%2FVgggszc%2Bx2JNXvLXxumitqHDQlmv8La7RBELSg1CFlhRTvkT2xdILalZC4EaamQNUWQMLIVRoDlXMYNbqLa%2FHkpmH%2B%2BOm%2BmG7erpwpgDRmov6aR9a"}],"group":"cf-nel","max_age":604800}
+Host: cpcontacts.islingtoncollege.edu.np:443
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Cf-Cache-Status: DYNAMIC
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Cache-Control: no-cache, no-store, must-revalidate, private
+Cf-Request-Id: 08c85a691a0000a7613691d000000001
+Cf-Ray: 62ed9354fd0fa761-KTM
+Content-Type: text/html; charset="utf-8"
+Set-Cookie: __cfduid=d3fbcb28c9fff2217b7277d96f93b75d41615557906; expires=Sun, 11-Apr-21 14:05:06 GMT; path=/; domain=.islingtoncollege.edu.np; HttpOnly; SameSite=Lax
