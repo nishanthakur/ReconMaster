@@ -50,5 +50,6 @@ Scan History
 Scan Result
 - This page displays results of the completed scan. At top, it gives summary of task completion along with total number of subdomain and endpoints discovered.
 - Below, fields namely subdomain, IP Address, Status, Ports, Content Length, Page Title, Technology, and Screenshot are displayed. Apart from that, there is an option to export list of subdomains and URLs for future analysis.
-- 
-![scan_results](https://user-images.githubusercontent.com/54204886/225201340-aaca409f-4acd-47ce-bd67-85f6e977a7ec.jpg)
+
+
+![scan_results](https://user-images.githubusercontent.com/54204886/225204358-3bb33f5e-5f8c-40cb-9058-c508e3c85631.png)
