@@ -53,3 +53,7 @@ Scan Result
 
 
 ![scan_results](https://user-images.githubusercontent.com/54204886/225204358-3bb33f5e-5f8c-40cb-9058-c508e3c85631.png)
+
+## DEMO
+A short demo explaning different components this web application can be found [here](https://1drv.ms/v/s!AolcY885WF6Twy7_gIrdI_xuJgl_?e=TnVKs8) in Nepali Language.
+ 
